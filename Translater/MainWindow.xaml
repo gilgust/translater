@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="516" Width="482">
     <StackPanel >
-        <Menu Height="25" VerticalAlignment="Top">
+        <Menu  >
             <MenuItem Header="Настройки"  Command="{Binding OpenSettings}"/>
         </Menu>
         <DockPanel Margin="10">

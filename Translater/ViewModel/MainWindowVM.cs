@@ -9,6 +9,7 @@ using System.Windows;
 using System.IO;
 using Microsoft.Win32;
 using Google.Cloud.Translation.V2;
+using Translater.View;
 
 namespace Translater.ViewModel
 {
@@ -24,12 +25,15 @@ namespace Translater.ViewModel
 
         private TranslationClient _translater;
 
+        //private Window _settingsWindow;
+
         public MainWindowVM()
         {
             var SingletonTranslater = GoogleTranslater.GetInstance();
             _translater = SingletonTranslater.Translater;
 
             SupportedLanguages = _translater.ListLanguages("ru");
+            //_settingsWindow = new SettingsWindow();
         }
 
 
@@ -184,8 +188,8 @@ namespace Translater.ViewModel
                 return _openSettings ??
                     (_openSettings = new RelayCommand(obj =>
                     {
-
-
+                        var sw = new SettingsWindow();
+                        sw.Show();
                     }));
             }
         }

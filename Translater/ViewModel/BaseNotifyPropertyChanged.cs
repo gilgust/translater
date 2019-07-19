@@ -10,7 +10,7 @@ using Translater.Annotations;
 
 namespace Translater.ViewModel
 {
-    class BaseNotifyPropertyChanged : INotifyPropertyChanged
+     public class BaseNotifyPropertyChanged : INotifyPropertyChanged
     {
 
 
