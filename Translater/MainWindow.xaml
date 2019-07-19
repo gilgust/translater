@@ -1,0 +1,71 @@
+﻿<Window x:Class="Translater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Translater"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="516" Width="482">
+    <StackPanel >
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Настройки"  Command="{Binding OpenSettings}"/>
+        </Menu>
+        <DockPanel Margin="10">
+            <Button Content="Выбрать файл" Command="{Binding ChooseFile}" Height="21" Margin="0,0,5,0" Width="95"/>
+            <TextBlock Text="{Binding OriginFile, UpdateSourceTrigger=PropertyChanged}" 
+                       Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        </DockPanel>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ComboBox ItemsSource="{Binding SupportedLanguages}" 
+                      SelectedItem="{Binding SourceLanguage, UpdateSourceTrigger=PropertyChanged}" 
+                      Grid.Column="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Border BorderBrush="{x:Null}" Height="25" Grid.Column="1">
+                <TextBlock  Text=">>>" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ComboBox ItemsSource="{Binding SupportedLanguages}" 
+                      SelectedItem="{Binding TargetLanguage, UpdateSourceTrigger=PropertyChanged}" 
+                      Grid.Column="2">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+        
+        <DockPanel Margin="10">
+            <Label Content="Перевод"/>
+            <TextBox Text="{Binding TranslatedFile, UpdateSourceTrigger=PropertyChanged}" />
+        </DockPanel>
+        
+        <Button Content="Google перевод" Command="{Binding TranslateFile}" Height="40" Width="150" Margin="0,20"/>
+        
+        <Label Content="origine"/>
+        <Border BorderThickness="1" BorderBrush="Black">
+            <TextBlock Height="100" 
+                       Text="{Binding OriginText, UpdateSourceTrigger=PropertyChanged}"/>
+        </Border>
+
+
+        <Label Content="translated"/>
+        <Border BorderThickness="1" BorderBrush="Black">
+            <TextBlock Height="100"
+                       Text="{Binding TranslatedText, UpdateSourceTrigger=PropertyChanged}"/>
+        </Border>
+        
+    </StackPanel>
+</Window>
